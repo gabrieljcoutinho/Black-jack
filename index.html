@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+     <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>BlackJack</title>
+       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css">
+        <link rel="stylesheet" href="style.css">
+      </head>
+       <body>
+         <div id="wrapper">
+           <div id="game">
+             <div id="alert" class="alert alert-error hide">
+              <span></span></div>
+               <div id="dealer"> <div id="dhand"></div> </div>
+
+               <div id="player"> <div id="phand"></div>
+              </div> <div id="money"> <div id="cash">Saldo: $ <span>1000</span></div>
+              <div id="wager-display">Aposta: $ <span>0</span></div> </div> <div id="actions">
+                <button id="deal" class="btn">Dar as Cartas</button> <button id="hit" class="btn" disabled>Pedir Carta</button>
+                 <button id="stand" class="btn" disabled>Parar</button> <br> <label for="wager"><strong>Aposta:</strong></label>
+                 <input id="wager" class="input-small" type="text" /> </div> </div> </div>
+                 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+                 <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+                  <script src="./script.js"></script>
+                 </body>
+                 </html>

@@ -1,0 +1,288 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: radial-gradient(circle at center, #0a1f1f, #041c1c);
+    font-family: 'Segoe UI', Helvetica, Arial, Verdana, sans-serif;
+    color: #fff;
+    overflow: hidden;
+}
+
+#wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+#game {
+    background: url('./table.jpg') no-repeat center center;
+    background-size: cover;
+    border-radius: 20px;
+    height: 900px;
+    width: 1400px;
+    font: 16px/19px Helvetica, Arial, Verdana, sans-serif;
+    position: relative;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.9), inset 0 0 30px rgba(0, 0, 0, 0.4);
+    border: 3px solid #ffd700;
+}
+
+/* ----------------- Dinheiro ----------------- */
+#money {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px 20px;
+    border-radius: 15px;
+    border: 2px solid #ffc926;
+    font-size: 22px;
+    text-align: right;
+    box-shadow: 0 0 15px #ffd700;
+}
+
+#money div {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+/* ----------------- Ações ----------------- */
+#actions {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    padding: 20px 25px;
+    background-color: rgba(0, 0, 0, 0.85);
+    border-radius: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+}
+
+#actions button {
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(45deg, #ffb347, #ffcc33);
+    color: #000;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 5px 15px rgba(255, 255, 0, 0.5);
+}
+
+#actions button:hover:not(:disabled) {
+    transform: translateY(-7px) scale(1.15);
+    box-shadow: 0 8px 25px rgba(255, 255, 0, 0.7);
+}
+
+#actions input#wager {
+    width: 120px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* ----------------- Cartas ----------------- */
+#dealer {
+    position: absolute;
+    top: 50px;
+    /* cartas do dealer no topo */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+}
+
+#player {
+    position: absolute;
+    bottom: 50px;
+    /* cartas do jogador mais para baixo */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+}
+
+#dhand {
+    top: 50px;
+}
+
+#phand {
+    bottom: 200px;
+}
+
+.card {
+    width: 140px;
+    height: 200px;
+    border-radius: 12px;
+    border: 2px solid #fff;
+    background-color: #fff;
+    color: black;
+    display: inline-block;
+    margin: 0 12px;
+    position: relative;
+    box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.9), 0 0 10px rgba(255, 255, 255, 0.3) inset;
+    text-align: center;
+    transform: translateY(-150px) rotate(-10deg);
+    opacity: 0;
+    animation: dropCard 0.6s forwards;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-30px) rotate(0deg) scale(1.12);
+    z-index: 999;
+}
+
+.card .rank {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-weight: bold;
+    font-size: 32px;
+    text-shadow: 1px 1px 3px #000;
+}
+
+.card .suit {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    font-size: 32px;
+}
+
+.card .suit.red {
+    color: red;
+}
+
+/* Carta virada do dealer totalmente preta */
+/* Carta virada do dealer usando imagem de verso */
+/* Carta do dealer virada */
+.card.down {
+    background-color: transparent;
+    /* remove cor de fundo */
+    border: none;
+    /* remove borda */
+    color: transparent;
+    /* esconde o texto */
+    box-shadow: none;
+    /* sem sombras */
+    background-image: url('./back.jpg');
+    /* imagem do verso */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1000;
+}
+
+/* Esconde rank e suit da carta virada */
+.card.down .rank,
+.card.down .suit {
+    visibility: hidden;
+}
+
+
+
+@keyframes dropCard {
+    0% {
+        transform: translateY(-150px) rotate(-10deg);
+        opacity: 0;
+    }
+
+    60% {
+        transform: translateY(20px) rotate(5deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* ----------------- Alertas ----------------- */
+#alert {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 15px;
+    border-radius: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    background: linear-gradient(45deg, #ff4e50, #f9d423);
+    color: #000;
+    z-index: 9999;
+    display: none;
+    box-shadow: 0 0 30px #ff4e50;
+    animation: fadeInAlert 0.6s;
+}
+
+@keyframes fadeInAlert {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-60px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* cartas do dealer */
+#dhand .card {
+    transform: translateY(-100px) rotate(-5deg);
+    /* cai de cima */
+}
+
+/* cartas do jogador */
+#phand .card {
+    transform: translateY(100px) rotate(5deg);
+    /* sobe de baixo */
+}
+
+@keyframes dropCardDealer {
+    0% {
+        transform: translateY(-150px) rotate(-10deg);
+        opacity: 0;
+    }
+
+    60% {
+        transform: translateY(20px) rotate(5deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes dropCardPlayer {
+    0% {
+        transform: translateY(150px) rotate(10deg);
+        opacity: 0;
+    }
+
+    60% {
+        transform: translateY(-20px) rotate(-5deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 1;
+    }
+}
