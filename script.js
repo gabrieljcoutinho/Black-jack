@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   function Player() {
-    let hand=[], wager=0, cash=1000;
+    let hand=[], wager=0, cash=10000;
     this.getHand = () => hand;
     this.setHand = card => hand.push(card);
     this.resetHand = () => hand=[];
